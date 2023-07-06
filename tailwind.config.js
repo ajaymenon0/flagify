@@ -17,6 +17,10 @@ export default {
         primary: "5px 5px 0px 0px #01B7A0",
         disabled: "5px 5px 0px 0px #C0C0C0",
       },
+      fontFamily: {
+        jua: ["Jua", "sans-serif"],
+        lemon: ["Lemon", "cursive"],
+      },
     },
   },
   plugins: [],
