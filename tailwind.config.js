@@ -12,14 +12,21 @@ export default {
         disabled: "#AAAAAA",
         "tertiary-bg": "#FFBE1866",
       },
-      dropShadow: {
+      boxShadow: {
         red: "5px 5px 0px 0px #F56969",
+        redDown: "2px 2px 0px 0px #F56969",
         primary: "5px 5px 0px 0px #01B7A0",
         disabled: "5px 5px 0px 0px #C0C0C0",
       },
       fontFamily: {
         jua: ["Jua", "sans-serif"],
         lemon: ["Lemon", "cursive"],
+      },
+      borderRadius: {
+        DEFAULT: "10px",
+      },
+      width: {
+        250: "250px",
       },
     },
   },
