@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BackgroundFlags } from "./components/Background.tsx";
+import { Levels } from "./components/Levels.tsx";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/levels",
-    element: <h1>Levels</h1>,
+    element: <Levels />,
   },
   {
     path: "/quiz",
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <div className=" bg-secondary h-screen">
+    <div className=" bg-secondary min-h-screen">
       <BackgroundFlags />
       <RouterProvider router={router} />
     </div>

@@ -14,8 +14,9 @@ export default {
       },
       boxShadow: {
         red: "5px 5px 0px 0px #F56969",
-        redDown: "2px 2px 0px 0px #F56969",
+        redDown: "3px 3px 0px 0px #F56969",
         primary: "5px 5px 0px 0px #01B7A0",
+        primaryDown: "3px 3px 0px 0px #01B7A0",
         disabled: "5px 5px 0px 0px #C0C0C0",
       },
       fontFamily: {
@@ -27,6 +28,7 @@ export default {
       },
       width: {
         250: "250px",
+        280: "280px",
       },
     },
   },
