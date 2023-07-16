@@ -1,7 +1,7 @@
 export const StrokeText = ({
   text = "Flagify",
   stroke = "16px",
-  textSizeClass = "text-6xl",
+  textSizeClass = "text-5xl",
   className = "",
 }: {
   text: string;
@@ -11,7 +11,7 @@ export const StrokeText = ({
 }) => {
   return (
     <div
-      className={`${textSizeClass} font-bold font-lemon relative ${className}`}
+      className={`${textSizeClass} font-bold flex font-lemon relative ${className}`}
     >
       <span
         className="absolute left-0 stroke-white text-white z-10"

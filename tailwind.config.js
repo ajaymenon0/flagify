@@ -27,6 +27,7 @@ export default {
         DEFAULT: "10px",
       },
       width: {
+        200: "200px",
         250: "250px",
         280: "280px",
       },

@@ -1,15 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { Start, Levels, Quiz } from "./pages";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BackgroundFlags } from "./components/Background.tsx";
-import { Levels } from "./components/Levels.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Start />,
   },
   {
     path: "/levels",
@@ -17,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/quiz",
-    element: <h1>Quiz</h1>,
+    element: <Quiz />,
   },
 ]);
 

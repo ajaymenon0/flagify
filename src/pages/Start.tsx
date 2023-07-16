@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { Button } from "./components/Button";
-import { StrokeText } from "./components/StrokeText";
+import { Button } from "../components/Button";
+import { StrokeText } from "../components/StrokeText";
 
-function App() {
+export const Start = () => {
   return (
     <div className="flex justify-center items-center h-screen relative">
-      <div>
+      <div className="flex flex-col items-center">
         <img
           src="./rexie.png"
           alt="rexie"
-          className="float-right translate-x-8 w-20"
+          className=" self-end translate-x-8 w-20"
         />
         <StrokeText text="FLAGIFY" className="mb-16" />
         <Link to="/levels">
@@ -18,6 +18,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};
