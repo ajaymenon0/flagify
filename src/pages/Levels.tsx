@@ -2,41 +2,31 @@ import { Link } from "react-router-dom";
 import { LevelItem } from "../types";
 import { LevelButton } from "../components/Button";
 import { StrokeText } from "../components/StrokeText";
+import localforage from "localforage";
+import { useEffect, useState } from "react";
+import { leveldata } from "../data/levels";
+import Confetti from "react-confetti";
 
 export const Levels = () => {
-  const data: LevelItem[] = [
-    {
-      level: 1,
-      status: "completed",
-    },
-    {
-      level: 2,
-      status: "unlocked",
-    },
-    {
-      level: 3,
-      status: "locked",
-    },
-    {
-      level: 4,
-      status: "locked",
-    },
-    {
-      level: 5,
-      status: "locked",
-    },
-    {
-      level: 6,
-      status: "locked",
-    },
-    {
-      level: 7,
-      status: "locked",
-    },
-  ];
+  const [data, setData] = useState<LevelItem[]>([]);
+
+  const getData = async () => {
+    const data = await localforage.getItem<LevelItem[]>("levels");
+    if (data) {
+      setData(data);
+    } else {
+      setData(leveldata);
+      await localforage.setItem("levels", leveldata);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="flex flex-col justify-content-center text-center py-8">
+      {data[data.length - 1]?.status === "completed" && <Confetti />}
       <StrokeText
         text="FLAGIFY"
         className="m-auto mb-12"
@@ -44,15 +34,16 @@ export const Levels = () => {
         textSizeClass="text-3xl"
       />
       <div className=" z-10 flex flex-col justify-center items-center">
-        {data.map((item) => (
-          <Link to={`/quiz/${item.level}`}>
-            <LevelButton
-              text={`Level ${item.level}`}
-              status={item.status}
-              className="mb-12"
-            />
-          </Link>
-        ))}
+        {data.length &&
+          data.map((item) => (
+            <Link to={`/quiz/${item.level}`}>
+              <LevelButton
+                text={`Level ${item.level}`}
+                status={item.status}
+                className="mb-12"
+              />
+            </Link>
+          ))}
 
         <img
           src="./rexie.png"

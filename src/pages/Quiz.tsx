@@ -21,7 +21,7 @@ export const Quiz = () => {
   const { name, flag, wrongName } = getRandomCountry();
 
   return (
-    <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20">
+    <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
       <header className="flex items-center justify-between mb-8">
         <Link to="/levels" className="z-20">
           <BackIcon />
