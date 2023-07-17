@@ -2,8 +2,8 @@ export const BackIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="24"
+      height="24"
       fill="none"
       viewBox="0 0 30 30"
     >

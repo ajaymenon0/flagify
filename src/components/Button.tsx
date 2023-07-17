@@ -1,10 +1,26 @@
+import cn from "classnames";
 import { LevelStatus } from "../types";
 import { LockedIcon } from "./icons/LockedIcon";
 import { StarIcon } from "./icons/StarIcon";
 
-export const Button = ({ text }: { text: string }) => {
+export const Button = ({
+  text,
+  type = "primary",
+  className = "",
+}: {
+  text: string;
+  type?: "primary" | "secondary";
+  className?: string;
+}) => {
   return (
-    <button className=" bg-white font-jua text-quaternary px-4 rounded py-4 z-10 w-200 text-lg shadow-red active:shadow-redDown">
+    <button
+      className={cn(" bg-white font-jua px-4 rounded py-4 z-10 w-200 text-lg", {
+        "text-quaternary shadow-red active:shadow-redDown": type === "primary",
+        " text-primary shadow-primary active:shadow-primary":
+          type === "secondary",
+        [className]: className,
+      })}
+    >
       {text}
     </button>
   );

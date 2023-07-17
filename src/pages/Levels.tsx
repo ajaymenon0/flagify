@@ -45,7 +45,7 @@ export const Levels = () => {
       />
       <div className=" z-10 flex flex-col justify-center items-center">
         {data.map((item) => (
-          <Link to={`/quiz?l=${item.level}`}>
+          <Link to={`/quiz/${item.level}`}>
             <LevelButton
               text={`Level ${item.level}`}
               status={item.status}

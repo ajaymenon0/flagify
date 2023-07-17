@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Levels />,
   },
   {
-    path: "/quiz",
+    path: "/quiz/:level",
     element: <Quiz />,
   },
 ]);

@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         white: "#ffffff",
+        "white-transparent": "#ffffff88",
         primary: "#2EB1A1",
         secondary: "#F2BE22",
         tertiary: "#FFBE18",
@@ -30,6 +31,15 @@ export default {
         200: "200px",
         250: "250px",
         280: "280px",
+      },
+      animation: {
+        heartbeat: "heartbeat 1s ease-in-out infinite",
+      },
+      keyframes: {
+        heartbeat: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.2)" },
+        },
       },
     },
   },

@@ -3,11 +3,13 @@ export const StrokeText = ({
   stroke = "16px",
   textSizeClass = "text-5xl",
   className = "",
+  textClass = "",
 }: {
   text: string;
   stroke?: string;
   className?: string;
   textSizeClass?: string;
+  textClass?: string;
 }) => {
   return (
     <div
@@ -19,7 +21,9 @@ export const StrokeText = ({
       >
         {text}
       </span>
-      <span className="relative z-20 text-primary">{text}</span>
+      <span className={`relative z-20 ${textClass || "text-primary"}`}>
+        {text}
+      </span>
     </div>
   );
 };

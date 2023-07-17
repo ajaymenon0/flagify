@@ -6,6 +6,7 @@ export const HeartIcon = ({ className = "" }) => {
       height="32"
       fill="none"
       viewBox="0 0 34 32"
+      className={className}
     >
       <path
         fill="#F56969"
