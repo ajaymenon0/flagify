@@ -6,6 +6,7 @@ import localforage from "localforage";
 import { useEffect, useState } from "react";
 import { leveldata } from "../data/levels";
 import Confetti from "react-confetti";
+import { deleteLevelData } from "../utils";
 
 export const Levels = () => {
   const [data, setData] = useState<LevelItem[]>([]);

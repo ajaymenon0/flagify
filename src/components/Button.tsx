@@ -56,10 +56,10 @@ export const LevelButton = ({
       className={`flex items-center justify-center bg-white font-jua px-9 rounded py-2 z-10 w-250 text-lg text-primary shadow-primary active:shadow-primaryDown disabled:text-disabled disabled:shadow-disabled ${className}`}
       disabled={status === "locked"}
     >
-      <span className={` mt-1 ${statusIconSelector(status || "") && "mr-4"}`}>
+      <span className={`${statusIconSelector(status || "") && "mr-2"}`}>
         {text}
       </span>
-      {statusIconSelector(status || "unlocked")}
+      <span className="pb-1">{statusIconSelector(status || "unlocked")}</span>
     </button>
   );
 };

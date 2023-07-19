@@ -9,7 +9,9 @@ export const Hearts = ({
   className?: string;
 }) => {
   return (
-    <div className={`flex w-40 justify-between text-center ${className}`}>
+    <div
+      className={`flex w-40 relative justify-between text-center ${className}`}
+    >
       <HeartIcon
         className={cn(" transition-all delay-75", {
           " animate-heartbeat": score === 1,

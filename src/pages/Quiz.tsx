@@ -1,25 +1,16 @@
-import { Link, redirect, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Hearts } from "../components/Hearts";
 import { StrokeText } from "../components/StrokeText";
 import { BackIcon } from "../components/icons/BackIcon";
 import { Countries } from "../data/countries";
 import { Button } from "../components/Button";
 import { ProgressBar } from "../components/ProgressBar";
-import { leveldata } from "../data/levels";
 import { useEffect, useMemo, useState } from "react";
-import { generateRandomNumbers } from "../utils";
+import { generateRandomNumbers, getLevelData, onLevelComplete } from "../utils";
 import { LockedIcon } from "../components/icons/LockedIcon";
-import { LoseModal, Modal, WinModal } from "../components/Modal";
-
-// const getRandomCountry = () => {
-//   const randomIndex = Math.floor(Math.random() * Countries.length);
-//   const anotherRandomIndex = Math.floor(Math.random() * Countries.length);
-//   return {
-//     name: Countries[randomIndex].name,
-//     flag: Countries[randomIndex].image,
-//     wrongName: Countries[anotherRandomIndex].name,
-//   };
-// };
+import { LoseModal, WinModal } from "../components/Modal";
+import { LevelItem } from "../types";
+import ReactConfetti from "react-confetti";
 
 const LockedLevelScreen = () => (
   <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
@@ -74,13 +65,22 @@ export const Quiz = () => {
   const [levelScore, setLevelScore] = useState<number>(0);
   const [heartLevel, setHeartLevel] = useState<0 | 1 | 2 | 3>(3);
   const [showLoseModal, setShowLoseModal] = useState<boolean>(false);
-  const [showWinModal, setShowWinModal] = useState<boolean>(false);
+  const [showWinModal, setShowWinModal] = useState<boolean>(true);
+  const [leveldata, setLevelData] = useState<any>([]);
+  const [currentLevel, setCurrentLevel] = useState<LevelItem>();
+
+  useEffect(() => {
+    getLevelData().then((data) => {
+      setCurrentLevel(data[Number(level) - 1]);
+    });
+  }, []);
 
   const { level } = useParams();
-  const currentLevel = useMemo(
-    () => (level ? leveldata?.[Number(level) - 1] : leveldata?.[0]),
-    [level]
-  );
+  // const currentLevel = useMemo(
+  //   () => (level ? leveldata?.[Number(level) - 1] : leveldata?.[0]),
+  //   [level, leveldata]
+  // );
+  // console.log(currentLevel);
 
   const isLockedLevel = useMemo(
     () => currentLevel?.status === "locked",
@@ -88,15 +88,16 @@ export const Quiz = () => {
   );
 
   const questions = useMemo(
-    () => setQuizData(currentLevel.maxScore),
-    [currentLevel.maxScore]
+    () => currentLevel && setQuizData(currentLevel.maxScore),
+    [currentLevel]
   );
 
   useEffect(() => {
-    if (levelScore === currentLevel.maxScore) {
+    if (levelScore === currentLevel?.maxScore) {
+      onLevelComplete(Number(level));
       setShowWinModal(true);
     }
-  }, [levelScore, currentLevel.maxScore]);
+  }, [levelScore, currentLevel, level]);
 
   if (isLockedLevel) return <LockedLevelScreen />;
 
@@ -122,8 +123,12 @@ export const Quiz = () => {
     }
   };
 
+  if (!currentLevel) return <div />;
+
+  if (questions === undefined) return <div />;
+
   return (
-    <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
+    <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative max-w-xl m-auto">
       {showLoseModal && <LoseModal />}
       {showWinModal && <WinModal level={level} />}
       <header className="flex items-center justify-between mb-8">
@@ -188,6 +193,7 @@ export const Quiz = () => {
           <ProgressBar total={currentLevel.maxScore} score={levelScore} />
         </div>
       </section>
+      {showWinModal && <ReactConfetti />}
     </div>
   );
 };
