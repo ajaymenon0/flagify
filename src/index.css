@@ -6,7 +6,7 @@
 
 .bg-anim {
   --duration: 120s;
-  background: url("./flags.png") repeat;
+  background: url("/flags.png") repeat;
   -webkit-animation: scrolling var(--duration) linear infinite;
   -moz-animation: scrolling var(--duration) linear infinite;
   -o-animation: scrolling var(--duration) linear infinite;

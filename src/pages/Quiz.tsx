@@ -6,9 +6,10 @@ import { Countries } from "../data/countries";
 import { Button } from "../components/Button";
 import { ProgressBar } from "../components/ProgressBar";
 import { leveldata } from "../data/levels";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { generateRandomNumbers } from "../utils";
 import { LockedIcon } from "../components/icons/LockedIcon";
+import { LoseModal, Modal, WinModal } from "../components/Modal";
 
 // const getRandomCountry = () => {
 //   const randomIndex = Math.floor(Math.random() * Countries.length);
@@ -49,7 +50,7 @@ const LockedLevelScreen = () => (
 );
 
 const setQuizData = (maxScore: number) => {
-  const totalQuestions = maxScore * 2 + 5;
+  const totalQuestions = maxScore * 2 + 10;
   const countryIndices = generateRandomNumbers(
     totalQuestions,
     Countries.length
@@ -72,21 +73,30 @@ export const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [levelScore, setLevelScore] = useState<number>(0);
   const [heartLevel, setHeartLevel] = useState<0 | 1 | 2 | 3>(3);
+  const [showLoseModal, setShowLoseModal] = useState<boolean>(false);
+  const [showWinModal, setShowWinModal] = useState<boolean>(false);
 
   const { level } = useParams();
   const currentLevel = useMemo(
     () => (level ? leveldata?.[Number(level) - 1] : leveldata?.[0]),
     [level]
   );
+
   const isLockedLevel = useMemo(
     () => currentLevel?.status === "locked",
     [currentLevel]
   );
-  // const { name, flag, wrongName } = getRandomCountry();
+
   const questions = useMemo(
     () => setQuizData(currentLevel.maxScore),
     [currentLevel.maxScore]
   );
+
+  useEffect(() => {
+    if (levelScore === currentLevel.maxScore) {
+      setShowWinModal(true);
+    }
+  }, [levelScore, currentLevel.maxScore]);
 
   if (isLockedLevel) return <LockedLevelScreen />;
 
@@ -103,6 +113,7 @@ export const Quiz = () => {
           case 2:
             return 1;
           case 1:
+            setShowLoseModal(true);
             return 0;
           default:
             return 0;
@@ -113,6 +124,8 @@ export const Quiz = () => {
 
   return (
     <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
+      {showLoseModal && <LoseModal />}
+      {showWinModal && <WinModal level={level} />}
       <header className="flex items-center justify-between mb-8">
         <Link to="/levels" className="z-20">
           <BackIcon />

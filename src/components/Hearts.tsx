@@ -13,6 +13,7 @@ export const Hearts = ({
       <HeartIcon
         className={cn(" transition-all delay-75", {
           " animate-heartbeat": score === 1,
+          "opacity-50 grayscale": score === 0,
         })}
       />
       <HeartIcon
