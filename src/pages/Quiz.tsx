@@ -66,7 +66,6 @@ export const Quiz = () => {
   const [heartLevel, setHeartLevel] = useState<0 | 1 | 2 | 3>(3);
   const [showLoseModal, setShowLoseModal] = useState<boolean>(false);
   const [showWinModal, setShowWinModal] = useState<boolean>(false);
-  const [leveldata, setLevelData] = useState<any>([]);
   const [currentLevel, setCurrentLevel] = useState<LevelItem>();
 
   useEffect(() => {
