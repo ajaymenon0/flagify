@@ -8,7 +8,7 @@ export const ProgressBar = ({
   score: number;
 }) => {
   return (
-    <div className=" w-full h-10 border-quaternary border-4 rounded-lg relative flex justify-end items-center">
+    <div className=" w-full h-10 border-quaternary border-2 rounded-lg relative flex justify-end items-center">
       <StrokeText
         text={`${score}/${total}`}
         textSizeClass="sm"
@@ -18,7 +18,7 @@ export const ProgressBar = ({
       />
       <div
         style={{ width: `${(score / total) * 100}%` }}
-        className=" absolute bg-quaternary h-10 left-0 transition-all delay-75 duration-1000"
+        className=" absolute bg-quaternary h-10 left-0 transition-all rounded-lg delay-75 duration-1000"
       />
     </div>
   );

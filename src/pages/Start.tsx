@@ -5,7 +5,7 @@ import { StrokeText } from "../components/StrokeText";
 export const Start = () => {
   return (
     <div className="flex justify-center items-center h-screen relative">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center -translate-y-12">
         <img
           src="./rexie.png"
           alt="rexie"

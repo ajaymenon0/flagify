@@ -41,7 +41,7 @@ const LockedLevelScreen = () => (
 );
 
 const setQuizData = (maxScore: number) => {
-  const totalQuestions = maxScore * 2 + 10;
+  const totalQuestions = maxScore <= 50 ? maxScore * 2 + 10 : 195;
   const countryIndices = generateRandomNumbers(
     totalQuestions,
     Countries.length
@@ -147,11 +147,11 @@ export const Quiz = () => {
         <div className="flex justify-center items-center mb-8">
           <Hearts score={heartLevel} />
         </div>
-        <div className=" w-full h-64 bg-white-transparent rounded-sm flex items-center mb-12">
+        <div className=" w-full h-56 bg-white-transparent rounded-sm flex items-center mb-12">
           <img
             src={questions[currentQuestion]?.flag || ""}
             alt={questions[currentQuestion].name}
-            className=" w-56 h-56 object-contain m-auto"
+            className=" w-48 h-48 object-contain m-auto"
           />
         </div>
         <div className="mb-12">
@@ -189,8 +189,10 @@ export const Quiz = () => {
             </>
           )}
         </div>
-        <div>
-          <ProgressBar total={currentLevel.maxScore} score={levelScore} />
+        <div className=" fixed bottom-4 w-full left-0 px-5 text-center">
+          <div className=" max-w-lg m-auto">
+            <ProgressBar total={currentLevel.maxScore} score={levelScore} />
+          </div>
         </div>
       </section>
       {showWinModal && <ReactConfetti />}

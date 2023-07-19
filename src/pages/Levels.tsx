@@ -3,9 +3,10 @@ import { LevelItem } from "../types";
 import { LevelButton } from "../components/Button";
 import { StrokeText } from "../components/StrokeText";
 import localforage from "localforage";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { leveldata } from "../data/levels";
 import Confetti from "react-confetti";
+import classNames from "classnames";
 // import { deleteLevelData } from "../utils";
 
 export const Levels = () => {
@@ -39,13 +40,26 @@ export const Levels = () => {
       <div className=" z-10 flex flex-col justify-center items-center">
         {data.length &&
           data.map((item, index) => (
-            <Link key={index} to={`/quiz/${item.level}`}>
-              <LevelButton
-                text={`Level ${item.level}`}
-                status={item.status}
-                className="mb-12"
-              />
-            </Link>
+            <Fragment key={index}>
+              <Link to={`/quiz/${item.level}`}>
+                <LevelButton
+                  text={`Level ${item.level}`}
+                  status={item.status}
+                />
+              </Link>
+              {index < data.length - 1 && (
+                <svg
+                  height="50"
+                  width="50"
+                  className={classNames(" m-auto", {
+                    "text-primary": item.status !== "locked",
+                    "text-disabled": item.status === "locked",
+                  })}
+                >
+                  <line x1="25" y1="0" x2="25" y2="50" className="svgline" />
+                </svg>
+              )}
+            </Fragment>
           ))}
 
         <img

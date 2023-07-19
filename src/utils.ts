@@ -18,7 +18,9 @@ export const onLevelComplete = async (level: number) => {
   if (leveldata) {
     leveldata[level - 1].status = "completed";
     if (level < 7) {
-      leveldata[level].status = "unlocked";
+      if (leveldata[level].status === "locked") {
+        leveldata[level].status = "unlocked";
+      }
     }
     await localforage.setItem("levels", leveldata);
   }

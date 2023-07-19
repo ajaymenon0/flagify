@@ -29,3 +29,18 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.svgline {
+  /* stroke: #2EB1A1; */
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-dasharray: 4px;
+  stroke-dashoffset: 8px;
+  animation: stroke 700ms linear infinite;
+}
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
