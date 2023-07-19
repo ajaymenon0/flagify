@@ -1,0 +1,13 @@
+### Quiz Page
+- [x] Check current level, is level is unlocked then go back to levels page
+- [x] Based on levels number of countries to guess should show up, put this in the data
+- [x] Make sure the countries don't repeat, prepare a set of country list rather than calling a random country each time
+- [x] Make sure the buttons are jumbled
+- [x] On correct answer add to progress bar, on wrong take away one heart
+- [x] If all hearts are gone then show uhoh modal
+- [x] If progress bar is full then show win modal
+- [x] On win update the level to status complete
+- [x] Store the images in a folder, run a downloader
+- [] Imports for components need to be cleaned
+- [] Framer motion
+- [] Handle level 7 completion. Mega Winner!!

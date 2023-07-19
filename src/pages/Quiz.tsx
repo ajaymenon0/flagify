@@ -53,7 +53,7 @@ const setQuizData = (maxScore: number) => {
   return correctHalf.map((country, index) => {
     return {
       name: Countries[country].name,
-      flag: Countries[country].image,
+      flag: `/flags/${Countries[country].flag}`,
       wrongName: Countries[wrongHalf[index]].name,
       flipped: Math.random() > 0.5,
     };
@@ -65,7 +65,7 @@ export const Quiz = () => {
   const [levelScore, setLevelScore] = useState<number>(0);
   const [heartLevel, setHeartLevel] = useState<0 | 1 | 2 | 3>(3);
   const [showLoseModal, setShowLoseModal] = useState<boolean>(false);
-  const [showWinModal, setShowWinModal] = useState<boolean>(true);
+  const [showWinModal, setShowWinModal] = useState<boolean>(false);
   const [leveldata, setLevelData] = useState<any>([]);
   const [currentLevel, setCurrentLevel] = useState<LevelItem>();
 
