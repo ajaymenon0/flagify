@@ -5,7 +5,7 @@ export const Hearts = ({
   score,
   className = "",
 }: {
-  score: 1 | 2 | 3;
+  score: 0 | 1 | 2 | 3;
   className?: string;
 }) => {
   return (

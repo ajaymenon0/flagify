@@ -10,7 +10,7 @@ export const ProgressBar = ({
   return (
     <div className=" w-full h-10 border-quaternary border-4 rounded-lg relative flex justify-end items-center">
       <StrokeText
-        text="1/5"
+        text={`${score}/${total}`}
         textSizeClass="sm"
         stroke="4px"
         className="mr-3"

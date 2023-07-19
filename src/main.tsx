@@ -22,6 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/quiz/:level",
     element: <Quiz />,
+    errorElement: <ErrorBoundary />,
   },
 ]);
 

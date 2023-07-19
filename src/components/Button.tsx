@@ -7,10 +7,12 @@ export const Button = ({
   text,
   type = "primary",
   className = "",
+  onClick,
 }: {
   text: string;
   type?: "primary" | "secondary";
   className?: string;
+  onClick?: () => void;
 }) => {
   return (
     <button
@@ -20,6 +22,7 @@ export const Button = ({
           type === "secondary",
         [className]: className,
       })}
+      onClick={onClick}
     >
       {text}
     </button>
