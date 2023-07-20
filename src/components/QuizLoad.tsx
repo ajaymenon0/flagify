@@ -26,7 +26,7 @@ export const QuizLoad = ({ level }: { level: string }) => (
     >
       <img src="/rexie.png" alt="rexie" className="w-40 mb-12 translate-x-4" />
       <StrokeText
-        text={Number(level) === 7 ? `Level ${level}!` : "Final Level!"}
+        text={`Level ${level}!`}
         className="m-auto"
         stroke="8px"
         textSizeClass="text-6xl mb-3"
