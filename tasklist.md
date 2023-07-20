@@ -9,5 +9,5 @@
 - [x] On win update the level to status complete
 - [x] Store the images in a folder, run a downloader
 - [] Imports for components need to be cleaned
-- [] Framer motion
+- [x] Framer motion
 - [] Handle level 7 completion. Mega Winner!!

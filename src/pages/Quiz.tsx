@@ -11,6 +11,8 @@ import { LockedIcon } from "../components/icons/LockedIcon";
 import { LoseModal, WinModal } from "../components/Modal";
 import { LevelItem } from "../types";
 import ReactConfetti from "react-confetti";
+import { AnimatePresence, motion } from "framer-motion";
+import { QuizLoad } from "../components/QuizLoad";
 
 const LockedLevelScreen = () => (
   <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
@@ -67,11 +69,15 @@ export const Quiz = () => {
   const [showLoseModal, setShowLoseModal] = useState<boolean>(false);
   const [showWinModal, setShowWinModal] = useState<boolean>(false);
   const [currentLevel, setCurrentLevel] = useState<LevelItem>();
+  const [showQuizLoad, setShowQuizLoad] = useState<boolean>(true);
 
   useEffect(() => {
     getLevelData().then((data) => {
       setCurrentLevel(data[Number(level) - 1]);
     });
+    setTimeout(() => {
+      setShowQuizLoad(false);
+    }, 1000);
   }, []);
 
   const { level } = useParams();
@@ -125,6 +131,13 @@ export const Quiz = () => {
   if (!currentLevel) return <div />;
 
   if (questions === undefined) return <div />;
+
+  if (showQuizLoad)
+    return (
+      <AnimatePresence>
+        <QuizLoad level={level || "1"} />
+      </AnimatePresence>
+    );
 
   return (
     <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative max-w-xl m-auto">

@@ -7,6 +7,7 @@ import { Fragment, useEffect, useState } from "react";
 import { leveldata } from "../data/levels";
 import Confetti from "react-confetti";
 import classNames from "classnames";
+import { motion } from "framer-motion";
 // import { deleteLevelData } from "../utils";
 
 export const Levels = () => {
@@ -38,9 +39,18 @@ export const Levels = () => {
         />
       </Link>
       <div className=" z-10 flex flex-col justify-center items-center">
-        {data.length &&
+        {!!data.length &&
           data.map((item, index) => (
-            <Fragment key={index}>
+            <motion.div
+              initial={{
+                translateY: 20,
+                translateX: 10,
+                opacity: 0,
+              }}
+              animate={{ translateY: 0, translateX: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.05 * index }}
+              key={index}
+            >
               <Link to={`/quiz/${item.level}`}>
                 <LevelButton
                   text={`Level ${item.level}`}
@@ -48,18 +58,22 @@ export const Levels = () => {
                 />
               </Link>
               {index < data.length - 1 && (
-                <svg
+                <motion.svg
                   height="50"
                   width="50"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  exit={{ opacity: 0 }}
                   className={classNames(" m-auto", {
                     "text-primary": item.status !== "locked",
                     "text-disabled": item.status === "locked",
                   })}
                 >
                   <line x1="25" y1="0" x2="25" y2="50" className="svgline" />
-                </svg>
+                </motion.svg>
               )}
-            </Fragment>
+            </motion.div>
           ))}
 
         <img
