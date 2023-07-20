@@ -11,7 +11,7 @@ import { LockedIcon } from "../components/icons/LockedIcon";
 import { LoseModal, WinModal } from "../components/Modal";
 import { LevelItem } from "../types";
 import ReactConfetti from "react-confetti";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { QuizLoad } from "../components/QuizLoad";
 
 const LockedLevelScreen = () => (

@@ -3,7 +3,7 @@ import { LevelItem } from "../types";
 import { LevelButton } from "../components/Button";
 import { StrokeText } from "../components/StrokeText";
 import localforage from "localforage";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { leveldata } from "../data/levels";
 import Confetti from "react-confetti";
 import classNames from "classnames";
