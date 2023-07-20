@@ -3,6 +3,7 @@ import { LevelStatus } from "../types";
 import { LockedIcon } from "./icons/LockedIcon";
 import { StarIcon } from "./icons/StarIcon";
 import { motion } from "framer-motion";
+import { Howl } from "howler";
 
 export const Button = ({
   text,
@@ -53,11 +54,18 @@ export const LevelButton = ({
     }
   };
 
+  const sound = new Howl({
+    src: ["/sounds/pop.mp3"],
+    rate: 1.3,
+    volume: 0.5,
+  });
+
   return (
     <motion.button
       className={`flex items-center justify-center bg-white font-jua px-9 rounded py-2 z-10 w-250 text-lg text-primary shadow-primary active:shadow-primaryDown disabled:text-disabled disabled:shadow-disabled ${className}`}
       disabled={status === "locked"}
       whileTap={{ scale: 0.9 }}
+      onClick={() => sound.play()}
     >
       <span className={`${statusIconSelector(status || "") && "mr-2"}`}>
         {text}

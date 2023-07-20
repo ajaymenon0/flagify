@@ -13,6 +13,7 @@ import { LevelItem } from "../types";
 import ReactConfetti from "react-confetti";
 import { AnimatePresence } from "framer-motion";
 import { QuizLoad } from "../components/QuizLoad";
+import { Howl } from "howler";
 
 const LockedLevelScreen = () => (
   <div className="flex flex-col justify-content-center text-center py-8 px-6 z-20 relative">
@@ -71,6 +72,34 @@ export const Quiz = () => {
   const [currentLevel, setCurrentLevel] = useState<LevelItem>();
   const [showQuizLoad, setShowQuizLoad] = useState<boolean>(true);
 
+  const winsound = useMemo(
+    () =>
+      new Howl({
+        src: ["/sounds/win.mp3"],
+        rate: 1,
+        volume: 0.3,
+      }),
+    []
+  );
+
+  const clicksound = new Howl({
+    src: ["/sounds/click.mp3"],
+    rate: 1,
+    volume: 0.3,
+  });
+
+  const wrongsound = new Howl({
+    src: ["/sounds/wrong.mp3"],
+    rate: 1,
+    volume: 0.3,
+  });
+
+  const gameOversound = new Howl({
+    src: ["/sounds/gameover.mp3"],
+    rate: 1,
+    volume: 0.3,
+  });
+
   useEffect(() => {
     getLevelData().then((data) => {
       setCurrentLevel(data[Number(level) - 1]);
@@ -100,9 +129,10 @@ export const Quiz = () => {
   useEffect(() => {
     if (levelScore === currentLevel?.maxScore) {
       onLevelComplete(Number(level));
+      winsound.play();
       setShowWinModal(true);
     }
-  }, [levelScore, currentLevel, level]);
+  }, [levelScore, currentLevel, level, winsound]);
 
   if (isLockedLevel) return <LockedLevelScreen />;
 
@@ -110,15 +140,19 @@ export const Quiz = () => {
     setCurrentQuestion((prevQIndex) => prevQIndex + 1);
     if (isRight) {
       setLevelScore((prevScore) => prevScore + 1);
+      clicksound.play();
     } else {
       setHeartLevel((prevHeartLevel) => {
         // some TS bullshit I need to figure out
         switch (prevHeartLevel) {
           case 3:
+            wrongsound.play();
             return 2;
           case 2:
+            wrongsound.play();
             return 1;
           case 1:
+            gameOversound.play();
             setShowLoseModal(true);
             return 0;
           default:
