@@ -50,8 +50,12 @@ const setQuizData = (maxScore: number) => {
     Countries.length
   );
 
-  const correctHalf = countryIndices.slice(0, totalQuestions / 2);
-  const wrongHalf = countryIndices.slice(totalQuestions / 2, totalQuestions);
+  const correctHalf = countryIndices;
+  const wrongHalf = countryIndices.map((i) => {
+    if (i === 0) return countryIndices.length - 1;
+    else if (i === countryIndices.length - 1) return 0;
+    else return i - 1;
+  });
 
   return correctHalf.map((country, index) => {
     return {

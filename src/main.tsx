@@ -2,12 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Start, Levels, Quiz } from "./pages";
 import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useRouteError,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BackgroundFlags } from "./components/Background.tsx";
+import { ErrorBoundary } from "./components/ErrorBoundary.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +31,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </div>
   </React.StrictMode>
 );
-
-function ErrorBoundary() {
-  const error = useRouteError();
-  console.error(error);
-  // Uncaught ReferenceError: path is not defined
-  return <div>Dang! Check ze console!</div>;
-}
