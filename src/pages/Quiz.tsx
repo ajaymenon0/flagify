@@ -52,11 +52,7 @@ const setQuizData = (maxScore: number) => {
   }
 
   const correctHalf = countryIndices;
-  const wrongHalf = countryIndices.map((i) => {
-    if (i === 0) return countryIndices.length - 1;
-    else if (i === countryIndices.length - 1) return 0;
-    else return i - 1;
-  });
+  const wrongHalf = correctHalf.slice(10).concat(correctHalf.slice(0, 10));
 
   return correctHalf.map((country, index) => {
     return {
