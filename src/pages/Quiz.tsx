@@ -45,10 +45,11 @@ const LockedLevelScreen = () => (
 
 const setQuizData = (maxScore: number) => {
   const totalQuestions = maxScore <= 50 ? maxScore * 2 + 10 : 195;
-  const countryIndices = generateRandomNumbers(
-    totalQuestions,
-    Countries.length
-  );
+  let countryIndices = generateRandomNumbers(totalQuestions, Countries.length);
+
+  if (maxScore > 150) {
+    countryIndices = [...countryIndices, ...countryIndices.slice(0, 10)];
+  }
 
   const correctHalf = countryIndices;
   const wrongHalf = countryIndices.map((i) => {
